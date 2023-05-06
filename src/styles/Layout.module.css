@@ -1,0 +1,17 @@
+.wrapper {
+  height: 100dvh;
+  background-color: #000000;
+}
+
+.container {
+  width: 100%;
+  max-width: 72rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.menu {
+  display: grid;
+}

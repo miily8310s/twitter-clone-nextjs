@@ -1,0 +1,11 @@
+.logo {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  border-radius: 9999px;
+  cursor: pointer;
+}
+
+.logo:hover {
+  opacity: 0.1;
+}
