@@ -3,7 +3,15 @@
   align-items: center;
 }
 
+.onlyLogo {
+  cursor: pointer;
+  width: 3.5rem;
+  height: 3.5rem;
+  padding: 1rem;
+}
+
 .logo {
+  display: none;
   cursor: pointer;
 }
 
@@ -15,6 +23,15 @@
 }
 
 @media screen and (min-width: 768px) {
+  .onlyLogo {
+    display: none;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+  }
   .label {
     display: block;
   }

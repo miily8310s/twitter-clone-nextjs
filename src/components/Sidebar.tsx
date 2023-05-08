@@ -4,6 +4,8 @@ import { SidebarLogo } from "./SidebarLogo";
 import { BsHouseFill } from "react-icons/bs";
 import { FaUser } from "react-icons/fa";
 import { SidebarItem } from "./SidebarItem";
+import { SidebarTweetButton } from "./SidebarTweetButton";
+import styles from "@/styles/components/Sidebar.module.css";
 
 export const Sidebar: FC = () => {
   const items = [
@@ -20,21 +22,18 @@ export const Sidebar: FC = () => {
     },
   ];
   return (
-    <div>
-      <div>
-        <div>
-          <SidebarLogo />
-          {items.map((item) => (
-            <SidebarItem
-              key={item.label}
-              icon={item.icon}
-              href={item.href}
-              auth={item.auth}
-              label={item.label}
-            />
-          ))}
-        </div>
-      </div>
+    <div className={styles.wrapper}>
+      <SidebarLogo />
+      {items.map((item) => (
+        <SidebarItem
+          key={item.label}
+          icon={item.icon}
+          href={item.href}
+          auth={item.auth}
+          label={item.label}
+        />
+      ))}
+      <SidebarTweetButton />
     </div>
   );
 };

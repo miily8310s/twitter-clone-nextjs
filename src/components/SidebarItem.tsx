@@ -13,11 +13,11 @@ type SidebarItemProps = {
 export const SidebarItem: FC<SidebarItemProps> = ({ label, icon: Icon }) => {
   return (
     <div className={styles.item}>
-      <div className={styles.logo}>
-        <Icon width={28} color="white" />
+      <div className={styles.onlyLogo}>
+        <Icon size={28} color="white" />
       </div>
       <div className={styles.logo}>
-        <Icon width={24} color="white" />
+        <Icon size={24} color="white" />
         <p className={styles.label}>{label}</p>
       </div>
     </div>

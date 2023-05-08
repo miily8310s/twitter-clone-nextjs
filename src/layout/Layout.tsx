@@ -12,7 +12,7 @@ export const Layout: FC<LayoutProps> = ({ children }) => {
       <div className={styles.container}>
         <div className={styles.menu}>
           <Sidebar />
-          {children}
+          <div className={styles.child}>{children}</div>
         </div>
       </div>
     </div>
