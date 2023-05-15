@@ -20,9 +20,8 @@
 }
 
 .child {
-  border-left: 1px;
-  border-right: 1px;
-  border-color: #ffffff;
+  border-left: 1px solid #ffffff;
+  border-right: 1px solid #ffffff;
   grid-column: span 3 / span 3;
 }
 
