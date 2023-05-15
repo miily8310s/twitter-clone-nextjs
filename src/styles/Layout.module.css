@@ -1,0 +1,32 @@
+.wrapper {
+  height: 100dvh;
+  background-color: #000000;
+}
+
+.container {
+  width: 100%;
+  max-width: 72rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 30px;
+  padding-right: 30px;
+  height: 100%;
+}
+
+.menu {
+  display: grid;
+  height: 100%;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.child {
+  border-left: 1px solid #ffffff;
+  border-right: 1px solid #ffffff;
+  grid-column: span 3 / span 3;
+}
+
+@media screen and (min-width: 768px) {
+  .child {
+    grid-column: span 2 / span 2;
+  }
+}

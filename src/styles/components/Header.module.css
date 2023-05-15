@@ -1,0 +1,20 @@
+.wrapper {
+  border-color: #333333;
+  border-bottom: 0.75rem;
+  padding: 0.5rem;
+}
+.contents {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+.labelText {
+  color: #ffffff;
+  font-size: 1.6rem;
+}
+.backButton {
+  cursor: pointer;
+}
+.backButton:hover {
+  opacity: 0.7;
+}
