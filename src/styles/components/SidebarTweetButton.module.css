@@ -6,7 +6,7 @@
 .icon {
   display: grid;
   place-items: center;
-  background-color: skyblue;
+  background-color: rgb(14, 165, 233);
   padding: 1rem;
   border-radius: 9999px;
   width: 3.5rem;
@@ -21,7 +21,7 @@
   padding: 0.5rem 1rem;
   display: none;
   cursor: pointer;
-  background-color: skyblue;
+  background-color: rgb(14, 165, 233);
   border-radius: 9999px;
 }
 
