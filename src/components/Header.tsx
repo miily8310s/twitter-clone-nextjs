@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { FC, useCallback } from "react";
 import { BiArrowBack } from "react-icons/bi";
-import styles from "@/styles/components/Header.module.css";
+import styles from "../styles/components/Header.module.css";
 
 type HeaderProps = {
   label: string;

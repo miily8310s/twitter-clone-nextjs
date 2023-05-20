@@ -1,5 +1,5 @@
 import { FC, MouseEventHandler } from "react";
-import styles from "@/styles/components/Button.module.css";
+import styles from "../styles/components/Button.module.css";
 
 type ButtonProps = {
   label: string;
