@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { FC, useCallback } from "react";
 import { FaFeather } from "react-icons/fa";
-import styles from "@/styles/components/SidebarTweetButton.module.css";
+import styles from "../styles/components/SidebarTweetButton.module.css";
 
 export const SidebarTweetButton: FC = () => {
   const router = useRouter();

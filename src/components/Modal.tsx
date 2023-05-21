@@ -1,7 +1,6 @@
 import React, { FC, ReactElement, useCallback } from "react";
 import { AiOutlineClose } from "react-icons/ai";
-import styles from "@/styles/components/Modal.module.css";
-import { title } from "process";
+import styles from "../styles/components/Modal.module.css";
 import { Button } from "./Button";
 
 type ModalProps = {
