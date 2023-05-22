@@ -1,7 +1,7 @@
 .wrapper {
-  border-color: #333333;
-  border-bottom: 0.75rem;
+  border-bottom: 0.75rem solid #333333;
   padding: 0.5rem;
+  background-color: rgb(38 38 38);
 }
 .contents {
   display: flex;

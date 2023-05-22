@@ -1,0 +1,22 @@
+.btn {
+  border-radius: 9999px;
+  border: 2px solid #333333;
+  padding: 1rem 1.25rem;
+  color: #ffffff;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.btn:disabled {
+  opacity: 0.7;
+  cursor: none;
+}
+.black {
+  color: #333333;
+  background-color: #ffffff;
+}
+.large {
+  font-size: 1.25rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}

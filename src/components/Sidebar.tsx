@@ -5,7 +5,7 @@ import { BsHouseFill } from "react-icons/bs";
 import { FaUser } from "react-icons/fa";
 import { SidebarItem } from "./SidebarItem";
 import { SidebarTweetButton } from "./SidebarTweetButton";
-import styles from "@/styles/components/Sidebar.module.css";
+import styles from "../styles/components/Sidebar.module.css";
 
 export const Sidebar: FC = () => {
   const items = [

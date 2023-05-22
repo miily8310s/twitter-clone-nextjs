@@ -1,13 +1,13 @@
 .btn {
   display: block;
-  width: 100%;
+  background-color: transparent;
+  border: none;
 }
 
 .icon {
   display: grid;
   place-items: center;
-  background-color: skyblue;
-  padding: 1rem;
+  background-color: rgb(14, 165, 233);
   border-radius: 9999px;
   width: 3.5rem;
   height: 3.5rem;
@@ -21,7 +21,7 @@
   padding: 0.5rem 1rem;
   display: none;
   cursor: pointer;
-  background-color: skyblue;
+  background-color: rgb(14, 165, 233);
   border-radius: 9999px;
 }
 
@@ -29,6 +29,9 @@
   font-weight: 600;
   color: #ffffff;
   font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.5;
+  margin: 0;
 }
 
 .textWrapper:hover {
@@ -36,6 +39,9 @@
 }
 
 @media screen and (min-width: 768px) {
+  .btn {
+    width: 100%;
+  }
   .icon {
     display: none;
   }
