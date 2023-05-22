@@ -11,6 +11,6 @@
 @media screen and (min-width: 768px) {
   .wrapper {
     padding-left: 1.5rem;
-    width: 230px;
+    max-width: 230px;
   }
 }

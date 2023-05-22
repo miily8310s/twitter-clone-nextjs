@@ -17,7 +17,6 @@
   border: 2px solid #333333;
   outline: none;
   width: 100%;
-  box-sizing: border-box;
 }
 .input:disabled {
   background-color: rgb(23 23 23);
