@@ -27,3 +27,21 @@ export const Disabled: Story = {
     disable: true,
   },
 };
+
+export const Large: Story = {
+  args: {
+    label: "Click here",
+    onClick: () => {},
+    disable: true,
+    large: true,
+  },
+};
+
+export const Blacked: Story = {
+  args: {
+    label: "Click here",
+    onClick: () => {},
+    blacked: true,
+    large: true,
+  },
+};

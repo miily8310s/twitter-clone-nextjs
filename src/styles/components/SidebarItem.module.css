@@ -1,12 +1,11 @@
 .item {
   display: flex;
   align-items: center;
+  height: 3.5rem;
 }
 
 .onlyLogo {
   cursor: pointer;
-  width: 3.5rem;
-  height: 3.5rem;
   padding: 1rem;
 }
 
@@ -20,6 +19,7 @@
   font-size: 1.25rem;
   line-height: 1.75rem;
   display: none;
+  margin: 0;
 }
 
 @media screen and (min-width: 768px) {

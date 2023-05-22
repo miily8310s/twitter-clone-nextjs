@@ -49,7 +49,7 @@ export const Modal: FC<ModalProps> = ({
         <div className={styles.contents}>
           <div className={styles.header}>
             <h2 className={styles.headerText}>{title}</h2>
-            <button onClick={handleClose}>
+            <button className={styles.headerClose} onClick={handleClose}>
               <AiOutlineClose size={20} />
             </button>
           </div>
@@ -58,6 +58,8 @@ export const Modal: FC<ModalProps> = ({
             <Button
               disable={disabled}
               label={actionLabel}
+              blacked
+              large
               onClick={handleSubmit}
             />
             {footer}

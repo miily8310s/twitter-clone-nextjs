@@ -27,10 +27,17 @@ export const Default = {
   },
 } satisfies Story;
 
+export const Valued = {
+  args: {
+    placeholder: "Username",
+    value: "John Doe",
+  },
+} satisfies Story;
+
 export const Disable = {
   args: {
     placeholder: "Username",
-    value: "",
+    value: "John Doe",
     disabled: true,
   },
 } satisfies Story;
@@ -39,7 +46,7 @@ export const Labeled = {
   args: {
     label: "user",
     placeholder: "Username",
-    value: "",
+    value: "John Doe",
   },
 } satisfies Story;
 
@@ -47,7 +54,7 @@ export const Password = {
   args: {
     type: "password",
     placeholder: "Password",
-    value: "",
+    value: "12345678",
   },
 } satisfies Story;
 
@@ -55,6 +62,6 @@ export const Email = {
   args: {
     type: "email",
     placeholder: "Email",
-    value: "",
+    value: "john.doe@gmail.com",
   },
 } satisfies Story;

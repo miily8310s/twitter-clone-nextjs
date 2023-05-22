@@ -49,10 +49,12 @@ export const Login = {
       <div
         style={{ color: "#333333", textAlign: "center", marginTop: "0.5rem" }}
       >
-        <p>First time using Twitter?</p>
-        <span style={{ color: "#ffffff", cursor: "pointer" }}>
-          Create an account
-        </span>
+        <p>
+          First time using Twitter?{`  `}
+          <span style={{ color: "#ffffff", cursor: "pointer" }}>
+            Create an account
+          </span>
+        </p>
       </div>
     ),
   },
@@ -98,8 +100,10 @@ export const Register = {
       <div
         style={{ color: "#333333", textAlign: "center", marginTop: "0.5rem" }}
       >
-        <p>Already have an account?</p>
-        <span style={{ color: "#ffffff", cursor: "pointer" }}>Sign up</span>
+        <p>
+          Already have an account?{` `}
+          <span style={{ color: "#ffffff", cursor: "pointer" }}>Sign up</span>
+        </p>
       </div>
     ),
   },

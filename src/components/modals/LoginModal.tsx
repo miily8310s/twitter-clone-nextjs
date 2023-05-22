@@ -26,10 +26,12 @@ export const LoginModal: FC = () => {
 
   const footerContent = (
     <div style={{ color: "#333333", textAlign: "center", marginTop: "0.5rem" }}>
-      <p>First time using Twitter?</p>
-      <span style={{ color: "#ffffff", cursor: "pointer" }}>
-        Create an account
-      </span>
+      <p>
+        First time using Twitter?
+        <span style={{ color: "#ffffff", cursor: "pointer" }}>
+          Create an account
+        </span>
+      </p>
     </div>
   ) satisfies ReactElement;
 
