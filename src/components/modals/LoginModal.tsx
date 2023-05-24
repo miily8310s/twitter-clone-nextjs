@@ -1,25 +1,26 @@
-import { FC, ReactElement, useCallback } from "react";
+import { FC, ReactElement } from "react";
 import { Modal } from "../Modal";
 import { Input } from "../Input";
+import { LoginModalInputs, useLoginModal } from "../../hooks/useLoginModal";
 
 export const LoginModal: FC = () => {
-  const onSubmit = useCallback(() => {}, []);
+  const { register, onSubmit, isLoginOpen, onLoginClose } = useLoginModal();
 
   const bodyContent = (
     <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-      <Input
+      <Input<LoginModalInputs>
+        register={register}
         type="email"
         placeholder="Email"
-        value=""
         disabled={false}
-        onChange={() => {}}
+        regLabel="email"
       />
-      <Input
+      <Input<LoginModalInputs>
+        register={register}
         type="password"
         placeholder="Password"
-        value=""
         disabled={false}
-        onChange={() => {}}
+        regLabel="password"
       />
     </div>
   ) satisfies ReactElement;
@@ -37,12 +38,13 @@ export const LoginModal: FC = () => {
 
   return (
     <Modal
+      isOpen={isLoginOpen}
       title="Login"
       actionLabel="Sign in"
       body={bodyContent}
       footer={footerContent}
       onSubmit={onSubmit}
-      onClose={() => {}}
+      onClose={onLoginClose}
     />
   );
 };

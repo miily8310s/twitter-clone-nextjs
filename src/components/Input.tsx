@@ -1,23 +1,28 @@
-import { ChangeEventHandler, FC } from "react";
 import styles from "../styles/components/Input.module.css";
+import { FieldValues, Path, UseFormRegister } from "react-hook-form";
 
-type InputProps = {
+interface InputValue {
+  email: string;
+  password: string;
+}
+
+type InputProps<T extends FieldValues> = {
   label?: string;
   placeholder: string;
-  value: string;
   type?: string;
   disabled?: boolean;
-  onChange?: ChangeEventHandler<HTMLInputElement>;
+  register: UseFormRegister<T>;
+  regLabel: Path<T>;
 };
 
-export const Input: FC<InputProps> = ({
-  type = "text",
-  placeholder,
-  value,
-  disabled,
-  onChange,
+export function Input<T extends FieldValues>({
   label,
-}) => {
+  type,
+  disabled,
+  placeholder,
+  register,
+  regLabel,
+}: InputProps<T>) {
   return (
     <div className={styles.wrapper}>
       {label && <p className={styles.label}>{label}</p>}
@@ -26,9 +31,8 @@ export const Input: FC<InputProps> = ({
         type={type}
         disabled={disabled}
         placeholder={placeholder}
-        value={value}
-        onChange={onChange}
+        {...register(regLabel)}
       />
     </div>
   );
-};
+}
