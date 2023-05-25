@@ -4,7 +4,7 @@ import { Input } from "../Input";
 import { LoginModalInputs, useLoginModal } from "../../hooks/useLoginModal";
 
 export const LoginModal: FC = () => {
-  const { register, onSubmit, isLoginOpen, onLoginClose } = useLoginModal();
+  const { register, onSubmit, onClose, isLoginOpen } = useLoginModal();
 
   const bodyContent = (
     <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
@@ -44,7 +44,7 @@ export const LoginModal: FC = () => {
       body={bodyContent}
       footer={footerContent}
       onSubmit={onSubmit}
-      onClose={onLoginClose}
+      onClose={onClose}
     />
   );
 };

@@ -1,8 +1,5 @@
 import { RootState } from "@/libs/store";
-import {
-  // onOpen as onLoginOpen,
-  onClose as onLoginClose,
-} from "@/slices/loginModalSlice";
+import { onClose as onLoginClose } from "@/slices/loginModalSlice";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
@@ -26,7 +23,6 @@ export const useLoginModal = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const onSubmit = handleSubmit(async (input) => {
     try {
-      console.log("input", input);
       setIsLoading(true);
       dispatch(onLoginClose());
     } catch (error) {
@@ -34,5 +30,8 @@ export const useLoginModal = () => {
       setIsLoading(false);
     }
   });
-  return { register, onSubmit, isLoading, isLoginOpen, onLoginClose };
+  const onClose = () => {
+    dispatch(onLoginClose());
+  };
+  return { register, onSubmit, onClose, isLoading, isLoginOpen };
 };

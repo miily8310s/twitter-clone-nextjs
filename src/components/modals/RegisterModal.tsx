@@ -1,32 +1,38 @@
 import { FC, ReactElement, useCallback } from "react";
 import { Modal } from "../Modal";
 import { Input } from "../Input";
+import { useRegisterModal } from "@/hooks/useRegisterModal";
 
 export const RegisterModal: FC = () => {
-  const onSubmit = useCallback(() => {}, []);
+  const { register, onSubmit, isRegisterOpen, onClose } = useRegisterModal();
 
   const bodyContent = (
     <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
       <Input
         type="email"
         placeholder="Email"
-        value=""
+        register={register}
+        regLabel="email"
         disabled={false}
-        onChange={() => {}}
       />
-      <Input placeholder="Name" value="" disabled={false} onChange={() => {}} />
+      <Input
+        placeholder="Name"
+        register={register}
+        regLabel="name"
+        disabled={false}
+      />
       <Input
         placeholder="UserName"
-        value=""
+        register={register}
+        regLabel="username"
         disabled={false}
-        onChange={() => {}}
       />
       <Input
         type="password"
         placeholder="Password"
-        value=""
+        register={register}
+        regLabel="password"
         disabled={false}
-        onChange={() => {}}
       />
     </div>
   ) satisfies ReactElement;
@@ -40,12 +46,13 @@ export const RegisterModal: FC = () => {
 
   return (
     <Modal
+      isOpen={isRegisterOpen}
       title="Create an account"
       actionLabel="Register"
       body={bodyContent}
       footer={footerContent}
       onSubmit={onSubmit}
-      onClose={() => {}}
+      onClose={onClose}
     />
   );
 };
