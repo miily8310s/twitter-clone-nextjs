@@ -4,7 +4,8 @@ import { Input } from "../Input";
 import { LoginModalInputs, useLoginModal } from "../../hooks/useLoginModal";
 
 export const LoginModal: FC = () => {
-  const { register, onSubmit, onClose, isLoginOpen } = useLoginModal();
+  const { register, onSubmit, onClose, onSwitch, isLoginOpen } =
+    useLoginModal();
 
   const bodyContent = (
     <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
@@ -29,7 +30,10 @@ export const LoginModal: FC = () => {
     <div style={{ color: "#333333", textAlign: "center", marginTop: "0.5rem" }}>
       <p>
         First time using Twitter?
-        <span style={{ color: "#ffffff", cursor: "pointer" }}>
+        <span
+          style={{ color: "#ffffff", cursor: "pointer" }}
+          onClick={onSwitch}
+        >
           Create an account
         </span>
       </p>

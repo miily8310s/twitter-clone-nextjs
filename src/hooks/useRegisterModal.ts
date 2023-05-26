@@ -1,5 +1,7 @@
 import { RootState } from "@/libs/store";
+import { supabaseClient } from "@/libs/supabaseClient";
 import { onClose as onRegisterClose } from "@/slices/registerModalSlice";
+import { onOpen as onLoginOpen } from "@/slices/loginModalSlice";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
@@ -28,8 +30,24 @@ export const useRegisterModal = () => {
   const onSubmit = handleSubmit(async (input) => {
     try {
       setIsLoading(true);
+      const { username, name, email, password } = input;
+      const { error } = await supabaseClient.auth.signUp({
+        email,
+        password,
+        options: {
+          data: {
+            username,
+            name,
+          },
+        },
+      });
+      if (error) {
+        throw error;
+      }
+      // 入力したメールアドレス宛に承認メールが届く。
       dispatch(onRegisterClose());
-    } catch (error) {
+    } catch (error: any) {
+      alert(error.error_description || error.message);
     } finally {
       setIsLoading(false);
     }
@@ -37,5 +55,16 @@ export const useRegisterModal = () => {
   const onClose = () => {
     dispatch(onRegisterClose());
   };
-  return { register, onSubmit, onClose, isLoading, isRegisterOpen };
+  const onSwitchLogin = () => {
+    dispatch(onRegisterClose());
+    dispatch(onLoginOpen());
+  };
+  return {
+    register,
+    onSubmit,
+    onClose,
+    onSwitchLogin,
+    isLoading,
+    isRegisterOpen,
+  };
 };

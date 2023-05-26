@@ -10,9 +10,13 @@ type SidebarItemProps = {
   auth?: boolean;
 };
 
-export const SidebarItem: FC<SidebarItemProps> = ({ label, icon: Icon }) => {
+export const SidebarItem: FC<SidebarItemProps> = ({
+  label,
+  icon: Icon,
+  onClick,
+}) => {
   return (
-    <div className={styles.item}>
+    <div className={styles.item} onClick={onClick}>
       <div className={styles.onlyLogo}>
         <Icon size={28} color="white" />
       </div>

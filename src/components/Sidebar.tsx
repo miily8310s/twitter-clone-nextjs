@@ -1,13 +1,15 @@
 import { FC } from "react";
 import { SidebarLogo } from "./SidebarLogo";
-// import { BiLogOut } from 'react-icons/bi';
+import { BiLogOut } from "react-icons/bi";
 import { BsHouseFill } from "react-icons/bs";
 import { FaUser } from "react-icons/fa";
 import { SidebarItem } from "./SidebarItem";
 import { SidebarTweetButton } from "./SidebarTweetButton";
 import styles from "../styles/components/Sidebar.module.css";
+import { useCurrentUser } from "@/hooks/useCurrentUser";
 
 export const Sidebar: FC = () => {
+  const { currentUser, onSignOut } = useCurrentUser();
   const items = [
     {
       icon: BsHouseFill,
@@ -17,7 +19,7 @@ export const Sidebar: FC = () => {
     {
       icon: FaUser,
       label: "Profile",
-      // href: `/users/${currentUser?.id}`,
+      href: `/users/${currentUser?.id}`,
       auth: true,
     },
   ];
@@ -33,6 +35,13 @@ export const Sidebar: FC = () => {
           label={item.label}
         />
       ))}
+      {currentUser && (
+        <SidebarItem
+          onClick={() => onSignOut()}
+          icon={BiLogOut}
+          label="Logout"
+        />
+      )}
       <SidebarTweetButton />
     </div>
   );

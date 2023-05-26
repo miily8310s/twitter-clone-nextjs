@@ -4,7 +4,8 @@ import { Input } from "../Input";
 import { useRegisterModal } from "@/hooks/useRegisterModal";
 
 export const RegisterModal: FC = () => {
-  const { register, onSubmit, isRegisterOpen, onClose } = useRegisterModal();
+  const { register, isRegisterOpen, onSubmit, onClose, onSwitchLogin } =
+    useRegisterModal();
 
   const bodyContent = (
     <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
@@ -40,7 +41,12 @@ export const RegisterModal: FC = () => {
   const footerContent = (
     <div style={{ color: "#333333", textAlign: "center", marginTop: "0.5rem" }}>
       <p>Already have an account?</p>
-      <span style={{ color: "#ffffff", cursor: "pointer" }}>Sign up</span>
+      <span
+        style={{ color: "#ffffff", cursor: "pointer" }}
+        onClick={onSwitchLogin}
+      >
+        Sign In
+      </span>
     </div>
   ) satisfies ReactElement;
 
