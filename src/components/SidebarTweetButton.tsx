@@ -12,7 +12,6 @@ export const SidebarTweetButton: FC = () => {
   const { currentUser } = useCurrentUser();
 
   const click = useCallback(() => {
-    // TODO: ログインモーダル出す
     if (!currentUser) {
       dispatch(onLoginOpen());
     }

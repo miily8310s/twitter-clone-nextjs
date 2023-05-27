@@ -5,7 +5,6 @@ import styles from "../styles/components/SidebarItem.module.css";
 type SidebarItemProps = {
   label: string;
   icon: IconType;
-  href?: string;
   onClick?: () => void;
   auth?: boolean;
 };

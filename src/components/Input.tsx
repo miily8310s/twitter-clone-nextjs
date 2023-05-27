@@ -1,11 +1,6 @@
 import styles from "../styles/components/Input.module.css";
 import { FieldValues, Path, UseFormRegister } from "react-hook-form";
 
-interface InputValue {
-  email: string;
-  password: string;
-}
-
 type InputProps<T extends FieldValues> = {
   label?: string;
   placeholder: string;
@@ -31,7 +26,7 @@ export function Input<T extends FieldValues>({
         type={type}
         disabled={disabled}
         placeholder={placeholder}
-        {...register(regLabel)}
+        {...register(regLabel, { required: true })}
       />
     </div>
   );

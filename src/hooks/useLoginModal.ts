@@ -16,7 +16,11 @@ export const useLoginModal = () => {
     (state: RootState) => state.loginModal.isOpen
   );
   const dispatch = useDispatch();
-  const { register, handleSubmit } = useForm<LoginModalInputs>({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginModalInputs>({
     defaultValues: {
       email: "",
       password: "",
@@ -49,5 +53,13 @@ export const useLoginModal = () => {
     dispatch(onLoginClose());
     dispatch(onRegisterOpen());
   };
-  return { register, onSubmit, onClose, onSwitch, isLoading, isLoginOpen };
+  return {
+    register,
+    errors,
+    onSubmit,
+    onClose,
+    onSwitch,
+    isLoading,
+    isLoginOpen,
+  };
 };

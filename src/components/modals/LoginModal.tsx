@@ -4,7 +4,7 @@ import { Input } from "../Input";
 import { LoginModalInputs, useLoginModal } from "../../hooks/useLoginModal";
 
 export const LoginModal: FC = () => {
-  const { register, onSubmit, onClose, onSwitch, isLoginOpen } =
+  const { register, errors, onSubmit, onClose, onSwitch, isLoginOpen } =
     useLoginModal();
 
   const bodyContent = (
@@ -16,6 +16,9 @@ export const LoginModal: FC = () => {
         disabled={false}
         regLabel="email"
       />
+      {errors.email && (
+        <p style={{ color: "#bf1650" }}>*This field is required</p>
+      )}
       <Input<LoginModalInputs>
         register={register}
         type="password"
@@ -23,6 +26,9 @@ export const LoginModal: FC = () => {
         disabled={false}
         regLabel="password"
       />
+      {errors.password && (
+        <p style={{ color: "#bf1650" }}>*This field is required</p>
+      )}
     </div>
   ) satisfies ReactElement;
 

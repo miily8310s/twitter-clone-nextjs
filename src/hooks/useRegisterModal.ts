@@ -18,7 +18,11 @@ export const useRegisterModal = () => {
     (state: RootState) => state.registerModal.isOpen
   );
   const dispatch = useDispatch();
-  const { register, handleSubmit } = useForm<RegisterModalInputs>({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<RegisterModalInputs>({
     defaultValues: {
       email: "",
       name: "",
@@ -61,6 +65,7 @@ export const useRegisterModal = () => {
   };
   return {
     register,
+    errors,
     onSubmit,
     onClose,
     onSwitchLogin,

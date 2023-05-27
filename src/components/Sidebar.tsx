@@ -7,8 +7,10 @@ import { SidebarItem } from "./SidebarItem";
 import { SidebarTweetButton } from "./SidebarTweetButton";
 import styles from "../styles/components/Sidebar.module.css";
 import { useCurrentUser } from "@/hooks/useCurrentUser";
+import { useRouter } from "next/router";
 
 export const Sidebar: FC = () => {
+  const router = useRouter();
   const { currentUser, onSignOut } = useCurrentUser();
   const items = [
     {
@@ -30,7 +32,7 @@ export const Sidebar: FC = () => {
         <SidebarItem
           key={item.label}
           icon={item.icon}
-          href={item.href}
+          onClick={() => router.push(item.href || "/")}
           auth={item.auth}
           label={item.label}
         />
