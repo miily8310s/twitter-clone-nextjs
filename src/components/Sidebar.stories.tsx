@@ -26,6 +26,14 @@ type Story = StoryObj<typeof Modal>;
 
 export const Default = {} satisfies Story;
 
+export const WildPhone = {
+  parameters: {
+    viewport: {
+      defaultViewport: "pixel",
+    },
+  },
+} satisfies Story;
+
 export const Phone = {
   parameters: {
     viewport: {

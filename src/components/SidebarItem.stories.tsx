@@ -29,7 +29,6 @@ export const Default = {
   args: {
     icon: BsHouseFill,
     label: "Home",
-    href: "/",
   },
 } satisfies Story;
 
