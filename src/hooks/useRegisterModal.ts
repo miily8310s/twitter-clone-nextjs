@@ -1,7 +1,7 @@
-import { RootState } from "@/libs/store";
-import { supabaseClient } from "@/libs/supabaseClient";
-import { onClose as onRegisterClose } from "@/slices/registerModalSlice";
-import { onOpen as onLoginOpen } from "@/slices/loginModalSlice";
+import { RootState } from "../libs/store";
+import { supabaseClient } from "../libs/supabaseClient";
+import { onClose as onRegisterClose } from "../slices/registerModalSlice";
+import { onOpen as onLoginOpen } from "../slices/loginModalSlice";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";

@@ -1,6 +1,37 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Modal } from "./Modal";
 import { Input } from "./Input";
+import { FieldValues, Path, useForm } from "react-hook-form";
+import { LoginModalInputs } from "../hooks/useLoginModal";
+import { RegisterModalInputs } from "../hooks/useRegisterModal";
+
+type StoryInputProps<T> = {
+  type?: string;
+  label?: string;
+  disabled?: boolean;
+  placeholder: string;
+  regLabel: Path<T>;
+};
+
+const StoryInput = <T extends FieldValues>({
+  type,
+  label,
+  disabled,
+  placeholder,
+  regLabel,
+}: StoryInputProps<T>) => {
+  const { register } = useForm<T>();
+  return (
+    <Input<T>
+      type={type}
+      label={label}
+      disabled={disabled}
+      register={register}
+      placeholder={placeholder}
+      regLabel={regLabel}
+    />
+  );
+};
 
 const meta: Meta<typeof Modal> = {
   title: "Example/Modal",
@@ -27,19 +58,15 @@ export const Login = {
     title: "Login",
     body: (
       <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-        <Input
+        <StoryInput<LoginModalInputs>
           type="email"
           placeholder="Email"
-          value=""
-          disabled={false}
-          onChange={() => {}}
+          regLabel="email"
         />
-        <Input
+        <StoryInput<LoginModalInputs>
           type="password"
           placeholder="Password"
-          value=""
-          disabled={false}
-          onChange={() => {}}
+          regLabel="password"
         />
       </div>
     ),
@@ -66,31 +93,20 @@ export const Register = {
     title: "Create an account",
     body: (
       <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-        <Input
+        <StoryInput<RegisterModalInputs>
           type="email"
           placeholder="Email"
-          value=""
-          disabled={false}
-          onChange={() => {}}
+          regLabel="email"
         />
-        <Input
-          placeholder="Name"
-          value=""
-          disabled={false}
-          onChange={() => {}}
-        />
-        <Input
+        <StoryInput<RegisterModalInputs> placeholder="Name" regLabel="name" />
+        <StoryInput<RegisterModalInputs>
           placeholder="UserName"
-          value=""
-          disabled={false}
-          onChange={() => {}}
+          regLabel="username"
         />
-        <Input
+        <StoryInput<RegisterModalInputs>
           type="password"
           placeholder="Password"
-          value=""
-          disabled={false}
-          onChange={() => {}}
+          regLabel="password"
         />
       </div>
     ),

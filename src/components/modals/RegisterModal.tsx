@@ -1,7 +1,7 @@
 import { FC, ReactElement, useCallback } from "react";
 import { Modal } from "../Modal";
 import { Input } from "../Input";
-import { useRegisterModal } from "@/hooks/useRegisterModal";
+import { useRegisterModal } from "../../hooks/useRegisterModal";
 
 export const RegisterModal: FC = () => {
   const { register, errors, isRegisterOpen, onSubmit, onClose, onSwitchLogin } =

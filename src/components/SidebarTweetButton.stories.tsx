@@ -1,9 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Modal } from "./Modal";
 import { SidebarTweetButton } from "./SidebarTweetButton";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 
-const meta: Meta<typeof Modal> = {
+const meta: Meta<typeof SidebarTweetButton> = {
   title: "Example/Sidebar/SidebarTweetButton",
   component: SidebarTweetButton,
   tags: ["autodocs"],
@@ -22,7 +21,7 @@ const meta: Meta<typeof Modal> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof Modal>;
+type Story = StoryObj<typeof SidebarTweetButton>;
 
 export const Default = {} satisfies Story;
 
