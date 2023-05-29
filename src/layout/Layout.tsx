@@ -1,6 +1,6 @@
 import { FC, ReactNode } from "react";
-import styles from "@/styles/Layout.module.css";
-import { Sidebar } from "@/components/Sidebar";
+import styles from "../styles/Layout.module.css";
+import { Sidebar } from "../components/Sidebar";
 
 type LayoutProps = {
   children: ReactNode;

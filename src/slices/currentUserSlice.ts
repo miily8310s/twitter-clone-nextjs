@@ -20,7 +20,8 @@ export const currentUserSlice = createSlice({
       state.isLoading = !!action.payload;
     },
     resetCurrentUser: (state) => {
-      state = initialState;
+      state.currentUser = null;
+      state.isLoading = false;
     },
   },
 });

@@ -1,7 +1,7 @@
-import { RootState } from "@/libs/store";
-import { supabaseClient } from "@/libs/supabaseClient";
-import { onClose as onLoginClose } from "@/slices/loginModalSlice";
-import { onOpen as onRegisterOpen } from "@/slices/registerModalSlice";
+import { RootState } from "../libs/store";
+import { supabaseClient } from "../libs/supabaseClient";
+import { onClose as onLoginClose } from "../slices/loginModalSlice";
+import { onOpen as onRegisterOpen } from "../slices/registerModalSlice";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
@@ -26,7 +26,7 @@ export const useLoginModal = () => {
       password: "",
     },
   });
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [_, setIsLoading] = useState<boolean>(false);
   const onSubmit = handleSubmit(async (input) => {
     try {
       setIsLoading(true);
@@ -59,7 +59,6 @@ export const useLoginModal = () => {
     onSubmit,
     onClose,
     onSwitch,
-    isLoading,
     isLoginOpen,
   };
 };

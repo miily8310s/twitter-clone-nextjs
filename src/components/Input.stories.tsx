@@ -1,5 +1,36 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Input } from "./Input";
+import { Path, useForm } from "react-hook-form";
+import { RegisterModalInputs } from "../hooks/useRegisterModal";
+import { FC } from "react";
+
+type StoryInputProps = {
+  type?: string;
+  label?: string;
+  disabled?: boolean;
+  placeholder: string;
+  regLabel: Path<RegisterModalInputs>;
+};
+
+const StoryInput: FC<StoryInputProps> = ({
+  type,
+  label,
+  disabled,
+  placeholder,
+  regLabel,
+}) => {
+  const { register } = useForm<RegisterModalInputs>();
+  return (
+    <Input<RegisterModalInputs>
+      type={type}
+      label={label}
+      disabled={disabled}
+      register={register}
+      placeholder={placeholder}
+      regLabel={regLabel}
+    />
+  );
+};
 
 const meta: Meta<typeof Input> = {
   title: "Example/Input",
@@ -21,47 +52,43 @@ export default meta;
 type Story = StoryObj<typeof Input>;
 
 export const Default = {
-  args: {
-    placeholder: "Username",
-    value: "",
+  render: () => {
+    return <StoryInput placeholder="name" regLabel="name" />;
   },
 } satisfies Story;
 
 export const Valued = {
-  args: {
-    placeholder: "Username",
-    value: "John Doe",
+  render: () => {
+    return <StoryInput placeholder="Username" regLabel="username" />;
   },
 } satisfies Story;
 
 export const Disable = {
-  args: {
-    placeholder: "Username",
-    value: "John Doe",
-    disabled: true,
+  render: () => {
+    return (
+      <StoryInput placeholder="Username" regLabel="username" disabled={true} />
+    );
   },
 } satisfies Story;
 
 export const Labeled = {
-  args: {
-    label: "user",
-    placeholder: "Username",
-    value: "John Doe",
+  render: () => {
+    return (
+      <StoryInput placeholder="Username" regLabel="username" label="user" />
+    );
   },
 } satisfies Story;
 
 export const Password = {
-  args: {
-    type: "password",
-    placeholder: "Password",
-    value: "12345678",
+  render: () => {
+    return (
+      <StoryInput type="password" placeholder="Password" regLabel="password" />
+    );
   },
 } satisfies Story;
 
 export const Email = {
-  args: {
-    type: "email",
-    placeholder: "Email",
-    value: "john.doe@gmail.com",
+  render: () => {
+    return <StoryInput type="email" placeholder="Email" regLabel="email" />;
   },
 } satisfies Story;
