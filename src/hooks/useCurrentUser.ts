@@ -9,12 +9,10 @@ import { useDispatch, useSelector } from "react-redux";
 export const useCurrentUser = () => {
   const router = useRouter();
   const dispatch = useDispatch();
-  // const [_, setSession] = useState<any>(null);
   const { currentUser } = useSelector((state: RootState) => state.currentUser);
 
   useEffect(() => {
     const saveSessions = (session: Session | null) => {
-      // setSession(session);
       dispatch(onCurrentUser(session?.user || null));
     };
     supabaseClient.auth
@@ -34,7 +32,6 @@ export const useCurrentUser = () => {
 
   const onSignOut = async () => {
     const { error } = await supabaseClient.auth.signOut();
-    debugger;
     if (!error) {
       dispatch(resetCurrentUser());
       router.push("/");
@@ -43,7 +40,6 @@ export const useCurrentUser = () => {
 
   return {
     currentUser,
-    // isLoading,
     onSignOut,
   };
 };

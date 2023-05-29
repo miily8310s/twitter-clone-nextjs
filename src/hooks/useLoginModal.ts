@@ -26,7 +26,7 @@ export const useLoginModal = () => {
       password: "",
     },
   });
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [_, setIsLoading] = useState<boolean>(false);
   const onSubmit = handleSubmit(async (input) => {
     try {
       setIsLoading(true);
@@ -59,7 +59,6 @@ export const useLoginModal = () => {
     onSubmit,
     onClose,
     onSwitch,
-    isLoading,
     isLoginOpen,
   };
 };
