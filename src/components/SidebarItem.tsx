@@ -1,11 +1,11 @@
-import { FC } from "react";
+import { FC, MouseEventHandler } from "react";
 import { IconType } from "react-icons";
 import styles from "../styles/components/SidebarItem.module.css";
 
 type SidebarItemProps = {
   label: string;
   icon: IconType;
-  onClick?: () => void;
+  onClick?: MouseEventHandler<HTMLDivElement>;
   auth?: boolean;
 };
 
