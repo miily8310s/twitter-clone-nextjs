@@ -1,5 +1,6 @@
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
+import Head from "next/head";
 import { Roboto } from "next/font/google";
 import { Layout } from "@/layout/Layout";
 import { RegisterModal } from "@/components/modals/RegisterModal";
@@ -14,14 +15,19 @@ const roboto = Roboto({
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <Provider store={store}>
-      <main className={roboto.className}>
-        <RegisterModal />
-        <LoginModal />
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </main>
-    </Provider>
+    <>
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
+      <Provider store={store}>
+        <main className={roboto.className}>
+          <RegisterModal />
+          <LoginModal />
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </main>
+      </Provider>
+    </>
   );
 }
