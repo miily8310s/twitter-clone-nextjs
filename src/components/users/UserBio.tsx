@@ -34,9 +34,7 @@ export const UserBio: FC<UserBioPros> = (props) => {
           />
         )}
       </div>
-      <div
-        style={{ marginTop: "2rem", paddingLeft: "1rem", paddingRight: "1rem" }}
-      >
+      <div style={{ paddingLeft: "1rem", paddingRight: "1rem" }}>
         <div style={{ display: "flex", flexDirection: "column" }}>
           <p style={{ color: "#ffffff", fontSize: "1.5rem", fontWeight: 600 }}>
             {props.name}
@@ -56,7 +54,7 @@ export const UserBio: FC<UserBioPros> = (props) => {
               display: "flex",
               alignItems: "center",
               gap: "1rem",
-              marginTop: "2rem",
+              marginTop: "1rem",
               color: "rgb(115 115 115)",
             }}
           >
@@ -71,6 +69,8 @@ export const UserBio: FC<UserBioPros> = (props) => {
           alignItems: "center",
           marginTop: "1rem",
           gap: "1.5rem",
+          paddingLeft: "1rem",
+          paddingRight: "1rem",
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>

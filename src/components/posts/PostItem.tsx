@@ -7,7 +7,7 @@ import { AiOutlineHeart } from "react-icons/ai";
 type User = {
   avatar_url: string;
   email: string;
-  followingids: string[];
+  followingIds: string[];
   id: string;
   name: string;
   username: string;
@@ -20,10 +20,11 @@ type Post = {
 
 type PostProps = {
   post: Post;
+  isLiked: boolean;
 };
 
-export const PostItem: FC<PostProps> = ({ post }) => {
-  const LikeIcon = true ? AiFillHeart : AiOutlineHeart;
+export const PostItem: FC<PostProps> = ({ post, isLiked }) => {
+  const LikeIcon = isLiked ? AiFillHeart : AiOutlineHeart;
   return (
     <div
       role="article"
@@ -38,7 +39,7 @@ export const PostItem: FC<PostProps> = ({ post }) => {
         <div>
           <div
             aria-label="UserLink"
-            role="button"
+            role="link"
             onClick={() => {}}
             style={{
               display: "flex",
@@ -68,6 +69,7 @@ export const PostItem: FC<PostProps> = ({ post }) => {
               display: "flex",
               alignItems: "center",
               gap: "1.25rem",
+              marginTop: "0.75rem",
             }}
           >
             <div
@@ -94,7 +96,7 @@ export const PostItem: FC<PostProps> = ({ post }) => {
               role="button"
               onClick={() => {}}
             >
-              <LikeIcon color={true && "red"} size={20} />
+              <LikeIcon color={isLiked ? "red" : ""} size={20} />
               {/* <p>{post.likedIds.length || 0}</p> */}
             </div>
           </div>

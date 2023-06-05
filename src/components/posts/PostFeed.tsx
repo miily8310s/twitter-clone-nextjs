@@ -4,7 +4,7 @@ import { PostItem } from "./PostItem";
 type User = {
   avatar_url: string;
   email: string;
-  followingids: string[];
+  followingIds: string[];
   id: string;
   name: string;
   username: string;
@@ -23,7 +23,7 @@ export const PostFeed: FC<PostFeedProps> = ({ posts }) => {
   return (
     <div role="feed">
       {posts.map((post) => (
-        <PostItem key={`${post.body}`} post={post} />
+        <PostItem key={`${post.body}`} post={post} isLiked={true} />
       ))}
     </div>
   );
