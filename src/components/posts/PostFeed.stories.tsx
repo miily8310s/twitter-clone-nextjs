@@ -32,6 +32,8 @@ export const Default: Story = {
           email: "test@gmail.com",
           avatar_url:
             "https://images.unsplash.com/photo-1608889825205-eebdb9fc5806?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1180&q=80",
+          cover_image: "",
+          bio: "",
           followingIds: [],
         },
       },
@@ -44,6 +46,8 @@ export const Default: Story = {
           email: "test@gmail.com",
           avatar_url:
             "https://images.unsplash.com/photo-1608889825205-eebdb9fc5806?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1180&q=80",
+          cover_image: "",
+          bio: "",
           followingIds: [],
         },
       },

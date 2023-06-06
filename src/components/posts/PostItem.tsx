@@ -5,12 +5,14 @@ import { AiFillHeart } from "react-icons/ai";
 import { AiOutlineHeart } from "react-icons/ai";
 
 type User = {
-  avatar_url: string;
-  email: string;
-  followingIds: string[];
+  avatar_url: string | null;
+  cover_image: string | null;
+  email: string | null;
+  followingIds: string[] | null;
   id: string;
-  name: string;
-  username: string;
+  name: string | null;
+  username: string | null;
+  bio: string | null;
 };
 
 type Post = {
@@ -35,7 +37,7 @@ export const PostItem: FC<PostProps> = ({ post, isLiked }) => {
       }}
     >
       <div style={{ display: "flex", alignItems: "flex-start", gap: "0.5rem" }}>
-        <Avatar imageUrl={post.user.avatar_url} />
+        <Avatar imageUrl={post.user.avatar_url || undefined} />
         <div>
           <div
             aria-label="UserLink"

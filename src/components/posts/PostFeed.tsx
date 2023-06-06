@@ -2,12 +2,14 @@ import { FC } from "react";
 import { PostItem } from "./PostItem";
 
 type User = {
-  avatar_url: string;
-  email: string;
-  followingIds: string[];
+  avatar_url: string | null;
+  cover_image: string | null;
+  email: string | null;
+  followingIds: string[] | null;
   id: string;
-  name: string;
-  username: string;
+  name: string | null;
+  username: string | null;
+  bio: string | null;
 };
 
 type Post = {

@@ -3,6 +3,7 @@ import { PostFeed } from "@/components/posts/PostFeed";
 import { UserBio } from "@/components/users/UserBio";
 import { UserHero } from "@/components/users/UserHero";
 import { useCurrentUser } from "@/hooks/useCurrentUser";
+import { usePosts } from "@/hooks/usePosts";
 import { useUser } from "@/hooks/useUser";
 import Head from "next/head";
 import { useRouter } from "next/router";
@@ -13,9 +14,10 @@ const UserView: FC = () => {
   const router = useRouter();
   const { userId } = router.query;
   const { currentUser } = useCurrentUser();
-  const { user, error } = useUser(userId as string);
+  const { user, error: userError } = useUser(userId as string);
+  const { posts } = usePosts(userId as string);
   if (!user) {
-    if (!error) {
+    if (!userError) {
       return (
         <div style={{ display: "grid", placeItems: "center" }}>
           <ClipLoader color="lightblue" size={80} />
@@ -25,6 +27,16 @@ const UserView: FC = () => {
       return null;
     }
   }
+
+  const displayPosts = posts
+    ? posts!.map((post) => {
+        return {
+          body: post.body || "",
+          user,
+        };
+      })
+    : [];
+
   return (
     <>
       <Head>
@@ -40,14 +52,14 @@ const UserView: FC = () => {
           isMine={currentUser ? user?.id === currentUser?.id : false}
           name={user.name || ""}
           username={user.username || ""}
-          bio={user.bio || ""} // TODO:
+          bio={user.bio || ""}
           createdAt={"2023 06"} // TODO:
           isFollowing={false} // TODO:
           followingLength={777} // TODO:
           followersCount={999} // TODO:
           onClickEvent={() => {}} // TODO:
         />
-        <PostFeed posts={[]} />
+        <PostFeed posts={displayPosts} />
       </main>
     </>
   );
