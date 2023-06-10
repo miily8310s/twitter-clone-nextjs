@@ -3,22 +3,7 @@ import { Avatar } from "../Avatar";
 import { AiOutlineMessage } from "react-icons/ai";
 import { AiFillHeart } from "react-icons/ai";
 import { AiOutlineHeart } from "react-icons/ai";
-
-type User = {
-  avatar_url: string | null;
-  cover_image: string | null;
-  email: string | null;
-  followingIds: string[] | null;
-  id: string;
-  name: string | null;
-  username: string | null;
-  bio: string | null;
-};
-
-type Post = {
-  body: string;
-  user: User;
-};
+import { Post } from "../../hooks/usePosts";
 
 type PostProps = {
   post: Post;
@@ -37,7 +22,7 @@ export const PostItem: FC<PostProps> = ({ post, isLiked }) => {
       }}
     >
       <div style={{ display: "flex", alignItems: "flex-start", gap: "0.5rem" }}>
-        <Avatar imageUrl={post.user.avatar_url || undefined} />
+        <Avatar imageUrl={post.profiles.avatar_url || undefined} />
         <div>
           <div
             aria-label="UserLink"
@@ -51,9 +36,9 @@ export const PostItem: FC<PostProps> = ({ post, isLiked }) => {
             }}
           >
             <p style={{ color: "#ffffff", fontWeight: 600 }}>
-              {post.user.name}
+              {post.profiles.name}
             </p>
-            <span style={{ color: "#737373" }}>@{post.user.username}</span>
+            <span style={{ color: "#737373" }}>@{post.profiles.username}</span>
             {/* <span style={{ color: "#737373", fontSize: "0.75rem" }}>
               {post.user.created_at}
             </span> */}

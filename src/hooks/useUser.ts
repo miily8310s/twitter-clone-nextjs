@@ -1,7 +1,7 @@
 import { supabaseClient } from "@/libs/supabaseClient";
 import { useEffect, useState } from "react";
 
-type User = {
+export type User = {
   avatar_url: string | null;
   cover_image: string | null;
   email: string | null;

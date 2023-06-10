@@ -1,11 +1,12 @@
 import { supabaseClient } from "@/libs/supabaseClient";
 import { useEffect, useState } from "react";
+import { User } from "./useUser";
 
-type Post = {
+export type Post = {
+  id: number;
   body: string | null;
   created_at: string | null;
-  id: number;
-  userId: string | null;
+  profiles: User;
 };
 
 export const usePosts = (userId?: string) => {
@@ -13,12 +14,23 @@ export const usePosts = (userId?: string) => {
   const [error, setError] = useState<any>(null);
   useEffect(() => {
     if (!userId) {
-      return;
+      supabaseClient
+        .from("posts")
+        .select(`id, body, created_at, profiles!inner(*)`)
+        .returns<Post[]>()
+        .then(({ data, error }) => {
+          if (error) {
+            setError(error);
+          } else {
+            setPosts(data.filter((yy) => yy.profiles !== null));
+          }
+        });
     } else {
       supabaseClient
         .from("posts")
-        .select("*")
+        .select(`id, body, created_at, profiles!inner (*)`)
         .eq("userId", userId)
+        .returns<Post[]>()
         .then(({ data, error }) => {
           if (error) {
             setError(error);

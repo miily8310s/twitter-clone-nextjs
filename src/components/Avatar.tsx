@@ -4,7 +4,7 @@ import styles from "../styles/components/Avatar.module.css";
 
 type AvatarProps = {
   onClick?: MouseEventHandler<HTMLImageElement>;
-  imageUrl?: string;
+  imageUrl: string | undefined;
   hasBorder?: boolean;
   isLarge?: boolean;
 };
@@ -25,6 +25,7 @@ export const Avatar: FC<AvatarProps> = ({
         style={{ objectFit: "cover", borderRadius: "100%" }}
         src={imageUrl || "/images/default-image.png"}
         fill
+        sizes="3rem, 3rem"
         alt="Avatar image"
         onClick={onClick}
       />
