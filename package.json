@@ -41,6 +41,7 @@
     "eslint-plugin-storybook": "^0.6.12",
     "jest": "^29.5.0",
     "jest-environment-jsdom": "^29.5.0",
+    "react-spinners": "^0.13.8",
     "storybook": "^7.0.12"
   }
 }
