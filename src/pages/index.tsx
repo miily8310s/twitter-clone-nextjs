@@ -39,7 +39,7 @@ export default function Home() {
             padding: "0.5rem 1.25rem 0.5rem 1.25rem",
           }}
         >
-          {user ? (
+          {currentUser && user ? (
             <PostForm currentUser={user} placeholder="What's happening?" />
           ) : (
             <Welcome />

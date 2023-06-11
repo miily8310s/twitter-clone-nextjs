@@ -10,7 +10,7 @@ export const PostFeed: FC<PostFeedProps> = ({ posts }) => {
   return (
     <div role="feed">
       {posts.map((post) => (
-        <PostItem key={`${post.body}`} post={post} isLiked={true} />
+        <PostItem key={`${post.id}`} post={post} isLiked={true} />
       ))}
     </div>
   );

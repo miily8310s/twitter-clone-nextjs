@@ -1,8 +1,9 @@
 import { User } from "@/hooks/useUser";
 import { Avatar } from "./Avatar";
-import { FC } from "react";
+import { FC, useState } from "react";
 import { Button } from "./Button";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { supabaseClient } from "@/libs/supabaseClient";
 
 type PostFormProps = {
   currentUser: User;
@@ -14,8 +15,29 @@ type FormValues = {
 };
 
 export const PostForm: FC<PostFormProps> = ({ currentUser, placeholder }) => {
-  const { register, handleSubmit } = useForm<FormValues>();
-  const onSubmit: SubmitHandler<FormValues> = (data) => console.log(data);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormValues>();
+  const onSubmit: SubmitHandler<FormValues> = async (data) => {
+    try {
+      setIsLoading(true);
+      await supabaseClient.from("posts").insert([
+        {
+          id: Math.floor(Math.random() * 10000) + 1,
+          body: data.tweet,
+          userId: currentUser.id,
+          created_at: new Date(Date.now()).toISOString(),
+        },
+      ]);
+    } catch (e) {
+      console.error("Something wrong");
+    } finally {
+      setIsLoading(false);
+    }
+  };
   return (
     <div
       style={{
@@ -29,8 +51,9 @@ export const PostForm: FC<PostFormProps> = ({ currentUser, placeholder }) => {
       </div>
       <div role="group" style={{ flexGrow: 1 }}>
         <textarea
-          {...register("tweet")}
+          {...register("tweet", { required: true, maxLength: 140 })}
           placeholder={placeholder}
+          disabled={isLoading}
           style={{
             resize: "none",
             fontSize: "1rem",
@@ -41,6 +64,9 @@ export const PostForm: FC<PostFormProps> = ({ currentUser, placeholder }) => {
             width: "100%",
           }}
         />
+        {errors.tweet && (
+          <p style={{ color: "#bf1650" }}>{errors.tweet.message}</p>
+        )}
         <div
           style={{
             marginTop: "1rem",
@@ -48,7 +74,11 @@ export const PostForm: FC<PostFormProps> = ({ currentUser, placeholder }) => {
             placeItems: "flex-end",
           }}
         >
-          <Button label="Tweet" onClick={handleSubmit(onSubmit)} />
+          <Button
+            label="Tweet"
+            disable={isLoading}
+            onClick={handleSubmit(onSubmit)}
+          />
         </div>
       </div>
     </div>
