@@ -4,14 +4,24 @@ import { AiOutlineMessage } from "react-icons/ai";
 import { AiFillHeart } from "react-icons/ai";
 import { AiOutlineHeart } from "react-icons/ai";
 import { Post } from "../../hooks/usePosts";
+import { useRouter } from "next/router";
+import { setLike } from "@/hooks/useLikes";
 
 type PostProps = {
   post: Post;
+  currentUserId?: string;
   isLiked: boolean;
 };
 
-export const PostItem: FC<PostProps> = ({ post, isLiked }) => {
+export const PostItem: FC<PostProps> = ({
+  post,
+  currentUserId,
+  isLiked = false,
+}) => {
+  const router = useRouter();
+  const isMine = currentUserId ? currentUserId === post.profiles.id : false;
   const LikeIcon = isLiked ? AiFillHeart : AiOutlineHeart;
+
   return (
     <div
       role="article"
@@ -20,6 +30,7 @@ export const PostItem: FC<PostProps> = ({ post, isLiked }) => {
         cursor: "pointer",
         border: "1px solid rgb(38 38 38)",
       }}
+      onClick={() => router.push(`/posts/${post.id}`)}
     >
       <div style={{ display: "flex", alignItems: "flex-start", gap: "0.5rem" }}>
         <Avatar imageUrl={post.profiles.avatar_url || undefined} />
@@ -39,9 +50,11 @@ export const PostItem: FC<PostProps> = ({ post, isLiked }) => {
               {post.profiles.name}
             </p>
             <span style={{ color: "#737373" }}>@{post.profiles.username}</span>
-            {/* <span style={{ color: "#737373", fontSize: "0.75rem" }}>
-              {post.user.created_at}
-            </span> */}
+            {post.created_at && (
+              <span style={{ color: "#737373", fontSize: "0.75rem" }}>
+                {post.created_at.substring(0, 10)}
+              </span>
+            )}
           </div>
           <div
             aria-label="Body"
@@ -49,7 +62,6 @@ export const PostItem: FC<PostProps> = ({ post, isLiked }) => {
           >
             {post.body}
           </div>
-          {/* コメント・いいね数 */}
           <div
             role="group"
             style={{
@@ -69,23 +81,29 @@ export const PostItem: FC<PostProps> = ({ post, isLiked }) => {
               }}
             >
               <AiOutlineMessage size={20} />
-              {/* <p>{post.commentId.length || 0}</p> */}
             </div>
-            <div
-              aria-label="Like"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "0.5rem",
-                color: "#737373",
-                cursor: "pointer",
-              }}
-              role="button"
-              onClick={() => {}}
-            >
-              <LikeIcon color={isLiked ? "red" : ""} size={20} />
-              {/* <p>{post.likedIds.length || 0}</p> */}
-            </div>
+            {isMine ? (
+              <AiOutlineHeart size={20} color="#ffffff" />
+            ) : (
+              <div
+                aria-label="Like"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.5rem",
+                  color: "#737373",
+                  cursor: "pointer",
+                }}
+                role="button"
+                onClick={async () => {
+                  if (currentUserId) {
+                    await setLike(post.id, currentUserId);
+                  }
+                }}
+              >
+                <LikeIcon color={isLiked ? "red" : ""} size={20} />
+              </div>
+            )}
           </div>
         </div>
       </div>

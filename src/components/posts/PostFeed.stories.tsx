@@ -24,8 +24,10 @@ export const Default: Story = {
   args: {
     posts: [
       {
+        id: 111,
+        created_at: "test_date",
         body: "test post1",
-        user: {
+        profiles: {
           id: "test_id_1",
           name: "Guest User",
           username: "guest_user",
@@ -38,8 +40,10 @@ export const Default: Story = {
         },
       },
       {
+        id: 222,
+        created_at: "test_date2",
         body: "test post2",
-        user: {
+        profiles: {
           id: "test_id_2",
           name: "Guest User",
           username: "guest_user",
