@@ -59,7 +59,7 @@ export const UserBio: FC<UserBioPros> = (props) => {
             }}
           >
             <BiCalendar size={24} />
-            <p>Joined {props.createdAt}</p>
+            <p>Joined {props.createdAt.substring(0, 10)}</p>
           </div>
         </div>
       </div>

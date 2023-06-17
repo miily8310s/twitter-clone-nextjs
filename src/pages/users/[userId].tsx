@@ -7,17 +7,30 @@ import { useLikes } from "@/hooks/useLikes";
 import { usePosts } from "@/hooks/usePosts";
 import { useUser } from "@/hooks/useUser";
 import Head from "next/head";
-import { useRouter } from "next/router";
-import { FC } from "react";
+import { FC, useCallback } from "react";
 import { ClipLoader } from "react-spinners";
+import { onOpen as onEditOpen } from "../../slices/editModalSlice";
+import { useDispatch } from "react-redux";
+import { GetServerSideProps } from "next";
 
-const UserView: FC = () => {
-  const router = useRouter();
-  const { userId } = router.query;
+type UserViewProps = {
+  userId: string | string[] | undefined;
+};
+
+const UserView: FC<UserViewProps> = (props) => {
+  const dispatch = useDispatch();
+  const { userId } = props;
   const { currentUser } = useCurrentUser();
   const { user } = useUser(userId as string);
   const { posts, error } = usePosts(userId as string);
   const { likes } = useLikes(userId as string);
+
+  const onBioClick = useCallback(() => {
+    if (user?.id === currentUser?.id) {
+      dispatch(onEditOpen());
+    } else {
+    }
+  }, [currentUser?.id, dispatch, user?.id]);
 
   if (!user) {
     if (!error) {
@@ -47,11 +60,11 @@ const UserView: FC = () => {
           name={user.name ?? ""}
           username={user.username ?? ""}
           bio={user.bio ?? ""}
-          createdAt={"2023 06"} // TODO:
+          createdAt={user.created_at ?? ""}
           isFollowing={false} // TODO:
           followingLength={777} // TODO:
           followersCount={999} // TODO:
-          onClickEvent={() => {}} // TODO:
+          onClickEvent={onBioClick}
         />
         <PostFeed
           posts={posts ?? []}
@@ -61,6 +74,11 @@ const UserView: FC = () => {
       </main>
     </>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { userId } = context.query;
+  return { props: { userId } };
 };
 
 export default UserView;

@@ -73,6 +73,7 @@ export interface Database {
           avatar_url: string | null
           bio: string | null
           cover_image: string | null
+          created_at: string | null
           email: string | null
           followingIds: string[] | null
           id: string
@@ -83,6 +84,7 @@ export interface Database {
           avatar_url?: string | null
           bio?: string | null
           cover_image?: string | null
+          created_at?: string | null
           email?: string | null
           followingIds?: string[] | null
           id: string
@@ -93,6 +95,7 @@ export interface Database {
           avatar_url?: string | null
           bio?: string | null
           cover_image?: string | null
+          created_at?: string | null
           email?: string | null
           followingIds?: string[] | null
           id?: string

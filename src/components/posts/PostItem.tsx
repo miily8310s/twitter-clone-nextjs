@@ -30,7 +30,6 @@ export const PostItem: FC<PostProps> = ({
         cursor: "pointer",
         border: "1px solid rgb(38 38 38)",
       }}
-      onClick={() => router.push(`/posts/${post.id}`)}
     >
       <div style={{ display: "flex", alignItems: "flex-start", gap: "0.5rem" }}>
         <Avatar imageUrl={post.profiles.avatar_url || undefined} />
@@ -38,7 +37,7 @@ export const PostItem: FC<PostProps> = ({
           <div
             aria-label="UserLink"
             role="link"
-            onClick={() => {}}
+            onClick={() => router.push(`users/${post.profiles.id}`)}
             style={{
               display: "flex",
               alignItems: "center",
@@ -59,6 +58,7 @@ export const PostItem: FC<PostProps> = ({
           <div
             aria-label="Body"
             style={{ color: "#ffffff", marginTop: "0.5rem" }}
+            onClick={() => router.push(`/posts/${post.id}`)}
           >
             {post.body}
           </div>
