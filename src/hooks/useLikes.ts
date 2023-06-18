@@ -28,7 +28,7 @@ export const useLikes = (userId?: string) => {
         .from("likes")
         .select("post_id")
         .eq("user_id", userId)
-        .then(({ data, error }) => {
+        .then(({ data }) => {
           const temp: any = !data ? [] : data.map((d) => d.post_id);
           setLikes(temp);
         });

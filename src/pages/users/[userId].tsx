@@ -12,6 +12,7 @@ import { ClipLoader } from "react-spinners";
 import { onOpen as onEditOpen } from "../../slices/editModalSlice";
 import { useDispatch } from "react-redux";
 import { GetServerSideProps } from "next";
+import { setFollow, useFollows } from "@/hooks/useFollows";
 
 type UserViewProps = {
   userId: string | string[] | undefined;
@@ -24,13 +25,17 @@ const UserView: FC<UserViewProps> = (props) => {
   const { user } = useUser(userId as string);
   const { posts, error } = usePosts(userId as string);
   const { likes } = useLikes(userId as string);
+  const { followerNum, followerUsers } = useFollows(userId as string);
 
   const onBioClick = useCallback(() => {
-    if (user?.id === currentUser?.id) {
-      dispatch(onEditOpen());
-    } else {
+    dispatch(onEditOpen());
+  }, [dispatch]);
+
+  const onFollowClick = useCallback(async () => {
+    if (currentUser && user) {
+      await setFollow(currentUser.id, user.id);
     }
-  }, [currentUser?.id, dispatch, user?.id]);
+  }, [currentUser, user]);
 
   if (!user) {
     if (!error) {
@@ -61,10 +66,12 @@ const UserView: FC<UserViewProps> = (props) => {
           username={user.username ?? ""}
           bio={user.bio ?? ""}
           createdAt={user.created_at ?? ""}
-          isFollowing={false} // TODO:
-          followingLength={777} // TODO:
-          followersCount={999} // TODO:
+          isFollowing={
+            currentUser ? followerUsers.includes(currentUser.id) : false
+          }
+          followersCount={followerNum}
           onClickEvent={onBioClick}
+          onFollowEvent={onFollowClick}
         />
         <PostFeed
           posts={posts ?? []}

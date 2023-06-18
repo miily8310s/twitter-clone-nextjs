@@ -9,6 +9,40 @@ export type Json =
 export interface Database {
   public: {
     Tables: {
+      follows: {
+        Row: {
+          created_at: string | null
+          followedId: string | null
+          followId: string | null
+          id: number
+        }
+        Insert: {
+          created_at?: string | null
+          followedId?: string | null
+          followId?: string | null
+          id?: number
+        }
+        Update: {
+          created_at?: string | null
+          followedId?: string | null
+          followId?: string | null
+          id?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "follows_followedId_fkey"
+            columns: ["followedId"]
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "follows_followId_fkey"
+            columns: ["followId"]
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
       likes: {
         Row: {
           id: number
