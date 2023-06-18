@@ -7,6 +7,7 @@ import { RegisterModal } from "@/components/modals/RegisterModal";
 import { LoginModal } from "@/components/modals/LoginModal";
 import { Provider } from "react-redux";
 import { store } from "@/libs/store";
+import { EditModal } from "@/components/modals/EditModal";
 
 const roboto = Roboto({
   weight: "400",
@@ -23,6 +24,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <main className={roboto.className}>
           <RegisterModal />
           <LoginModal />
+          <EditModal />
           <Layout>
             <Component {...pageProps} />
           </Layout>

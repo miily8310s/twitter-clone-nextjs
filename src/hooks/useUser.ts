@@ -1,16 +1,8 @@
 import { supabaseClient } from "@/libs/supabaseClient";
+import { Database } from "../../types/supabase";
 import { useEffect, useState } from "react";
 
-export type User = {
-  avatar_url: string | null;
-  cover_image: string | null;
-  email: string | null;
-  followingIds: string[] | null;
-  id: string;
-  name: string | null;
-  username: string | null;
-  bio: string | null;
-};
+export type User = Database["public"]["Tables"]["profiles"]["Row"];
 
 export const useUser = (userId: string) => {
   const [user, setUser] = useState<User | null>(null);

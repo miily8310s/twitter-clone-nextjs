@@ -24,9 +24,11 @@ export const Default: Story = {
   args: {
     isLiked: false,
     post: {
-      body: "test post",
-      user: {
-        id: "test_id",
+      id: 111,
+      created_at: "test_date",
+      body: "test post1",
+      profiles: {
+        id: "test_id_1",
         name: "Guest User",
         username: "guest_user",
         email: "test@gmail.com",
@@ -44,9 +46,11 @@ export const Liked: Story = {
   args: {
     isLiked: true,
     post: {
-      body: "test post",
-      user: {
-        id: "test_id",
+      id: 111,
+      created_at: "test_date",
+      body: "test post1",
+      profiles: {
+        id: "test_id_1",
         name: "Guest User",
         username: "guest_user",
         email: "test@gmail.com",

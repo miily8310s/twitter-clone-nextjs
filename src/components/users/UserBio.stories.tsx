@@ -28,9 +28,9 @@ export const Default: Story = {
     bio: "test biography",
     createdAt: "2023 06",
     isFollowing: false,
-    followingLength: 777,
     followersCount: 999,
     onClickEvent: () => {},
+    onFollowEvent: () => {},
   },
 };
 
@@ -42,9 +42,9 @@ export const FollowUser: Story = {
     bio: "test biography",
     createdAt: "2023 06",
     isFollowing: true,
-    followingLength: 777,
     followersCount: 999,
     onClickEvent: () => {},
+    onFollowEvent: () => {},
   },
 };
 
@@ -56,8 +56,8 @@ export const MyPage: Story = {
     bio: "test biography",
     createdAt: "2023 06",
     isFollowing: false,
-    followingLength: 777,
     followersCount: 999,
     onClickEvent: () => {},
+    onFollowEvent: () => {},
   },
 };

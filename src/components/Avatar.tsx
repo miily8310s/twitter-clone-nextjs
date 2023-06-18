@@ -23,7 +23,7 @@ export const Avatar: FC<AvatarProps> = ({
     >
       <Image
         style={{ objectFit: "cover", borderRadius: "100%" }}
-        src={imageUrl || "/images/default-image.png"}
+        src={imageUrl || "/images/default-profile.png"}
         fill
         sizes="3rem, 3rem"
         alt="Avatar image"

@@ -7,11 +7,13 @@ import { useCurrentUser } from "@/hooks/useCurrentUser";
 import { Welcome } from "@/components/Welcome";
 import { PostForm } from "@/components/PostForm";
 import { useUser } from "@/hooks/useUser";
+import { useLikes } from "@/hooks/useLikes";
 
 export default function Home() {
   const { posts, error } = usePosts();
   const { currentUser } = useCurrentUser();
   const { user } = useUser(currentUser?.id ?? "");
+  const { likes } = useLikes(currentUser?.id as string);
 
   if (!posts) {
     if (!error) {
@@ -45,7 +47,11 @@ export default function Home() {
             <Welcome />
           )}
         </div>
-        <PostFeed posts={posts} />
+        <PostFeed
+          posts={posts}
+          currentUserId={currentUser ? currentUser.id : undefined}
+          likes={likes}
+        />
       </main>
     </>
   );

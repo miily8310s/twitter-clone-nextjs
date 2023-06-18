@@ -9,9 +9,9 @@ type UserBioPros = {
   bio: string;
   createdAt: string;
   isFollowing: boolean;
-  followingLength: number;
   followersCount: number;
   onClickEvent: MouseEventHandler<HTMLButtonElement>;
+  onFollowEvent: MouseEventHandler<HTMLButtonElement>;
 };
 
 export const UserBio: FC<UserBioPros> = (props) => {
@@ -30,7 +30,7 @@ export const UserBio: FC<UserBioPros> = (props) => {
           <Button
             blacked
             label={props.isFollowing ? "UnFollowing" : "Follow"}
-            onClick={props.onClickEvent}
+            onClick={props.isFollowing ? () => {} : props.onFollowEvent}
           />
         )}
       </div>
@@ -59,7 +59,7 @@ export const UserBio: FC<UserBioPros> = (props) => {
             }}
           >
             <BiCalendar size={24} />
-            <p>Joined {props.createdAt}</p>
+            <p>Joined {props.createdAt.substring(0, 10)}</p>
           </div>
         </div>
       </div>
@@ -73,10 +73,6 @@ export const UserBio: FC<UserBioPros> = (props) => {
           paddingRight: "1rem",
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-          <p style={{ color: "#ffffff" }}>{props.followingLength}</p>
-          <p style={{ color: "rgb(115 115 115)" }}>Following</p>
-        </div>
         <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
           <p style={{ color: "#ffffff" }}>{props.followersCount}</p>
           <p style={{ color: "rgb(115 115 115)" }}>Followers</p>
