@@ -37,6 +37,7 @@ export const Default: Story = {
           cover_image: "",
           bio: "",
           followingIds: [],
+          created_at: "",
         },
       },
       {
@@ -53,6 +54,7 @@ export const Default: Story = {
           cover_image: "",
           bio: "",
           followingIds: [],
+          created_at: "",
         },
       },
     ],
