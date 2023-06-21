@@ -35,3 +35,14 @@ export const usePost = (postId: string) => {
     error,
   };
 };
+
+export const addPost = async (body: string, userId: string) => {
+  await supabaseClient.from("posts").insert([
+    {
+      id: Math.floor(Math.random() * 10000) + 1,
+      body,
+      userId,
+      created_at: new Date(Date.now()).toISOString(),
+    },
+  ]);
+};
