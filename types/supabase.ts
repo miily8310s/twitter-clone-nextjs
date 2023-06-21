@@ -9,6 +9,43 @@ export type Json =
 export interface Database {
   public: {
     Tables: {
+      comments: {
+        Row: {
+          body: string | null
+          created_at: string | null
+          id: number
+          postId: number | null
+          userId: string | null
+        }
+        Insert: {
+          body?: string | null
+          created_at?: string | null
+          id?: number
+          postId?: number | null
+          userId?: string | null
+        }
+        Update: {
+          body?: string | null
+          created_at?: string | null
+          id?: number
+          postId?: number | null
+          userId?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "comments_postId_fkey"
+            columns: ["postId"]
+            referencedRelation: "posts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "comments_userId_fkey"
+            columns: ["userId"]
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
       follows: {
         Row: {
           created_at: string | null

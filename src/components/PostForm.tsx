@@ -3,18 +3,30 @@ import { Avatar } from "./Avatar";
 import { FC, useState } from "react";
 import { Button } from "./Button";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { supabaseClient } from "@/libs/supabaseClient";
 
 type PostFormProps = {
   currentUser: User;
   placeholder: string;
+  addCommentEvent?: (
+    body: string,
+    userId: string,
+    postId: number
+  ) => Promise<void>;
+  addPostEvent?: (body: string, userId: string) => Promise<void>;
+  postId?: number;
 };
 
 type FormValues = {
   tweet: string;
 };
 
-export const PostForm: FC<PostFormProps> = ({ currentUser, placeholder }) => {
+export const PostForm: FC<PostFormProps> = ({
+  currentUser,
+  placeholder,
+  addCommentEvent,
+  addPostEvent,
+  postId,
+}) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const {
     register,
@@ -24,17 +36,17 @@ export const PostForm: FC<PostFormProps> = ({ currentUser, placeholder }) => {
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     try {
       setIsLoading(true);
-      await supabaseClient.from("posts").insert([
-        {
-          id: Math.floor(Math.random() * 10000) + 1,
-          body: data.tweet,
-          userId: currentUser.id,
-          created_at: new Date(Date.now()).toISOString(),
-        },
-      ]);
+      if (addPostEvent) {
+        await addPostEvent(data.tweet, currentUser.id);
+      } else {
+        if (addCommentEvent && postId) {
+          addCommentEvent(data.tweet, currentUser.id, postId);
+        }
+      }
     } catch (e) {
       console.error("Something wrong");
     } finally {
+      data.tweet === "";
       setIsLoading(false);
     }
   };

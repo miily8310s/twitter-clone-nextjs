@@ -8,6 +8,7 @@ import { Welcome } from "@/components/Welcome";
 import { PostForm } from "@/components/PostForm";
 import { useUser } from "@/hooks/useUser";
 import { useLikes } from "@/hooks/useLikes";
+import { addPost } from "@/hooks/usePost";
 
 export default function Home() {
   const { posts, error } = usePosts();
@@ -42,7 +43,11 @@ export default function Home() {
           }}
         >
           {currentUser && user ? (
-            <PostForm currentUser={user} placeholder="What's happening?" />
+            <PostForm
+              currentUser={user}
+              placeholder="What's happening?"
+              addPostEvent={addPost}
+            />
           ) : (
             <Welcome />
           )}
