@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { userEvent, within } from "@storybook/testing-library";
 import { Header } from "./Header";
-import { jest } from "@storybook/jest";
+import { expect, jest } from "@storybook/jest";
 
 const meta: Meta<typeof Header> = {
   title: "Example/Header",
@@ -27,18 +27,26 @@ export const ArrowBack = {
     isBackArrow: true,
   },
   parameters: {
-    nextRouter: {
-      back: jest.fn(),
+    nextjs: {
+      router: {
+        path: "/some-default-path",
+        asPath: "/some-default-path",
+        query: {},
+        back: jest.fn(),
+      },
     },
   },
   play: async ({
     canvasElement,
     parameters: {
-      nextRouter: { back },
+      nextjs: {
+        router: { back },
+      },
     },
   }) => {
     const canvas = within(canvasElement);
     const arrowElement = canvas.getByLabelText("arrow_icon");
     await userEvent.click(arrowElement);
+    await expect(back).toBeCalledWith();
   },
 } satisfies Story;

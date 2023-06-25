@@ -38,4 +38,9 @@ export const Phone = {
       defaultViewport: "iphone12",
     },
   },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const logoElement = canvas.getByLabelText("back_to_top");
+    await userEvent.click(logoElement);
+  },
 } satisfies Story;

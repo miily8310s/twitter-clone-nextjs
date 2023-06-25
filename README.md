@@ -28,3 +28,18 @@
 
 - storybook
 - jest/testing-library
+
+### storybook とテストに関する考察
+
+- 今回のコンポーネントは test-runner を使って、jest ではなく playwright 上でテストを実行する方法で統一している。
+- 理由は jest だとルーターや onClick 系のイベントで失敗するため。
+
+- jest で行うメリット・デメリット
+  - ✅ 実行が早い
+  - ✅ 使い慣れた手法でかける
+  - ✅ storybook の立ち上げは不要
+  - ❌ play function に書いたルーターのテストが失敗する
+- test-runner（playwright） で行うメリット・デメリット
+  - ✅ ブラウザ環境で行うため、ルーターのテスト含め実行できる（Storybook で成功していれば大丈夫）
+  - ❌ 実行は遅い
+  - ❌ storybook をあらかじめ立ち上げる or どこかにデプロイしておく必要がある

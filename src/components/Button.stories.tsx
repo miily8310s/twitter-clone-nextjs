@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { jest } from "@storybook/jest";
+import { expect, jest } from "@storybook/jest";
 import { Button } from "./Button";
 import { userEvent, within } from "@storybook/testing-library";
 
@@ -20,23 +20,25 @@ export const Default: Story = {
     label: "Click Here",
     onClick: jest.fn(),
   },
-  play: async ({ canvasElement }) => {
+  play: async ({ canvasElement, args: { onClick } }) => {
     const canvas = within(canvasElement);
     const buttonElement = canvas.getByText("Click Here");
     await userEvent.click(buttonElement);
+    await expect(onClick).toBeCalled();
   },
 };
 
 export const Disabled: Story = {
   args: {
     label: "No Click",
-    onClick: () => {},
+    onClick: jest.fn(),
     disable: true,
   },
-  play: async ({ canvasElement }) => {
+  play: async ({ canvasElement, args: { onClick } }) => {
     const canvas = within(canvasElement);
     const buttonElement = canvas.getByText("No Click");
     await userEvent.click(buttonElement);
+    await expect(onClick).toBeCalled();
   },
 };
 
