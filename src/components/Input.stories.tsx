@@ -3,6 +3,7 @@ import { Input } from "./Input";
 import { Path, useForm } from "react-hook-form";
 import { RegisterModalInputs } from "../hooks/useRegisterModal";
 import { FC } from "react";
+import { userEvent, waitFor, within } from "@storybook/testing-library";
 
 type StoryInputProps = {
   type?: string;
@@ -54,6 +55,13 @@ type Story = StoryObj<typeof Input>;
 export const Default = {
   render: () => {
     return <StoryInput placeholder="name" regLabel="name" />;
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const arrowElement = canvas.getByLabelText("text_input");
+    await waitFor(async () => {
+      await userEvent.type(arrowElement, "testtest");
+    });
   },
 } satisfies Story;
 

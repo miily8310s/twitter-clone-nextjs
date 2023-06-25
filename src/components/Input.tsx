@@ -22,6 +22,7 @@ export function Input<T extends FieldValues>({
     <div className={styles.wrapper}>
       {label && <p className={styles.label}>{label}</p>}
       <input
+        aria-label="text_input"
         className={styles.input}
         type={type}
         disabled={disabled}

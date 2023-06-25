@@ -20,7 +20,7 @@ export const UserHero: FC<UserHeroProps> = ({ coverImage, profileImage }) => {
         <Image
           src={coverImage}
           fill
-          alt="User Cover Image"
+          alt="User_Cover_Image"
           style={{ objectFit: "cover" }}
         />
       )}

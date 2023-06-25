@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { SidebarTweetButton } from "./SidebarTweetButton";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
+import { userEvent, within } from "@storybook/testing-library";
 
 const meta: Meta<typeof SidebarTweetButton> = {
   title: "Example/Sidebar/SidebarTweetButton",
@@ -23,7 +24,13 @@ const meta: Meta<typeof SidebarTweetButton> = {
 export default meta;
 type Story = StoryObj<typeof SidebarTweetButton>;
 
-export const Default = {} satisfies Story;
+export const Default = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const logoElement = canvas.getByLabelText("back_to_top");
+    await userEvent.click(logoElement);
+  },
+} satisfies Story;
 
 export const Phone = {
   parameters: {

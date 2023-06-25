@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { jest } from "@storybook/jest";
 import { Button } from "./Button";
+import { userEvent, within } from "@storybook/testing-library";
 
 const meta: Meta<typeof Button> = {
   title: "Example/Button",
@@ -16,7 +18,12 @@ type Story = StoryObj<typeof Button>;
 export const Default: Story = {
   args: {
     label: "Click Here",
-    onClick: () => {},
+    onClick: jest.fn(),
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const buttonElement = canvas.getByText("Click Here");
+    await userEvent.click(buttonElement);
   },
 };
 
@@ -25,6 +32,11 @@ export const Disabled: Story = {
     label: "No Click",
     onClick: () => {},
     disable: true,
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const buttonElement = canvas.getByText("No Click");
+    await userEvent.click(buttonElement);
   },
 };
 

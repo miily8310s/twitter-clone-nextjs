@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Avatar } from "./Avatar";
+import { userEvent, within } from "@storybook/testing-library";
 
 const meta: Meta<typeof Avatar> = {
   title: "Example/Avatar",
@@ -15,6 +16,11 @@ type Story = StoryObj<typeof Avatar>;
 
 export const Default: Story = {
   args: {},
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const avatarElement = canvas.getByAltText("Avatar image");
+    await userEvent.click(avatarElement);
+  },
 };
 
 export const WithImage: Story = {
