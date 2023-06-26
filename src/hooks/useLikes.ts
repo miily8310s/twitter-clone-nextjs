@@ -1,4 +1,4 @@
-import { supabaseClient } from "@/libs/supabaseClient";
+import { supabaseClient } from "../libs/supabaseClient";
 import { useEffect, useState } from "react";
 import { Post } from "./usePosts";
 

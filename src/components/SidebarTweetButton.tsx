@@ -10,7 +10,7 @@ export const SidebarTweetButton: FC<SidebarTweetButtonProps> = ({
   onClick,
 }) => {
   return (
-    <button className={styles.btn} onClick={onClick}>
+    <button aria-label="back_to_top" className={styles.btn} onClick={onClick}>
       <div className={styles.icon}>
         <FaFeather size={24} color="white" />
       </div>

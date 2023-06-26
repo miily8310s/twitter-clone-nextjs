@@ -15,7 +15,12 @@ export const SidebarItem: FC<SidebarItemProps> = ({
   onClick,
 }) => {
   return (
-    <div className={styles.item} onClick={onClick}>
+    <div
+      role="link"
+      aria-label={`${label}_link`}
+      className={styles.item}
+      onClick={onClick}
+    >
       <div className={styles.onlyLogo}>
         <Icon size={28} color="white" />
       </div>

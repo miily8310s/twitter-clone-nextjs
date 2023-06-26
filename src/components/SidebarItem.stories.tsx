@@ -3,6 +3,8 @@ import { SidebarItem } from "./SidebarItem";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import { BsHouseFill } from "react-icons/bs";
 import { FaUser } from "react-icons/fa";
+import { userEvent, within } from "@storybook/testing-library";
+import { expect } from "@storybook/jest";
 
 const meta: Meta<typeof SidebarItem> = {
   title: "Example/Sidebar/SidebarItem",
@@ -30,12 +32,26 @@ export const Default = {
     icon: BsHouseFill,
     label: "Home",
   },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const logoElement = canvas.getByLabelText("Home_link");
+    const testElement = within(logoElement);
+    await expect(testElement.getByText("Home")).toBeInTheDocument();
+    await userEvent.click(logoElement);
+  },
 } satisfies Story;
 
 export const Profile = {
   args: {
     icon: FaUser,
     label: "Profile",
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const logoElement = canvas.getByLabelText("Profile_link");
+    const testElement = within(logoElement);
+    await expect(testElement.getByText("Profile")).toBeInTheDocument();
+    await userEvent.click(logoElement);
   },
 } satisfies Story;
 

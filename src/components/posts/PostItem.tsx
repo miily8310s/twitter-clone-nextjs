@@ -5,7 +5,7 @@ import { AiFillHeart } from "react-icons/ai";
 import { AiOutlineHeart } from "react-icons/ai";
 import { Post } from "../../hooks/usePosts";
 import { useRouter } from "next/router";
-import { setLike } from "@/hooks/useLikes";
+import { setLike } from "../../hooks/useLikes";
 
 type PostProps = {
   post: Post;
@@ -101,7 +101,11 @@ export const PostItem: FC<PostProps> = ({
                   }
                 }}
               >
-                <LikeIcon color={isLiked ? "red" : ""} size={20} />
+                <LikeIcon
+                  aria-label={`like_icon_${isLiked ? "red" : "white"}`}
+                  color={isLiked ? "red" : ""}
+                  size={20}
+                />
               </div>
             )}
           </div>

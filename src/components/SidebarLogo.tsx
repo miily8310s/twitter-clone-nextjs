@@ -6,7 +6,11 @@ import styles from "../styles/components/SidebarLogo.module.css";
 export const SidebarLogo: FC = () => {
   const router = useRouter();
   return (
-    <button className={styles.logo} onClick={() => router.push("/")}>
+    <button
+      aria-label="back_to_top"
+      className={styles.logo}
+      onClick={() => router.push("/")}
+    >
       <BsTwitter size={28} color="white" />
     </button>
   );

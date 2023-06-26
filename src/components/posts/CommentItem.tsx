@@ -27,6 +27,7 @@ export const CommentItem: FC<CommentItemProps> = (props) => {
         <div>
           <p
             onClick={onDisplayUser}
+            aria-label="user_name"
             style={{ color: "#ffffff", fontWeight: 600, cursor: "pointer" }}
           >
             {props.comment.profiles.name}

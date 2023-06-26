@@ -15,10 +15,11 @@ export const Header: FC<HeaderProps> = ({ label, isBackArrow }) => {
   }, [router]);
 
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} aria-label="header">
       <div className={styles.contents}>
         {isBackArrow && (
           <BiArrowBack
+            aria-label="arrow_icon"
             color="white"
             size={20}
             onClick={handleBack}

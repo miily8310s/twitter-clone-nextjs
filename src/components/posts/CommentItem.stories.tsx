@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { CommentItem } from "./CommentItem";
+import { userEvent, within } from "@storybook/testing-library";
+import { expect, jest } from "@storybook/jest";
 
 const meta: Meta<typeof CommentItem> = {
   title: "Example/Posts/CommentItem",
@@ -21,6 +23,16 @@ export default meta;
 type Story = StoryObj<typeof CommentItem>;
 
 export const Default: Story = {
+  parameters: {
+    nextjs: {
+      router: {
+        path: "/some-default-path",
+        asPath: "/some-default-path",
+        query: {},
+        push: jest.fn(),
+      },
+    },
+  },
   args: {
     comment: {
       id: 111,
@@ -39,5 +51,17 @@ export const Default: Story = {
         created_at: "",
       },
     },
+  },
+  play: async ({
+    canvasElement,
+    parameters: {
+      nextjs: {
+        router: { push },
+      },
+    },
+  }) => {
+    const canvas = within(canvasElement);
+    await userEvent.click(canvas.getByLabelText("user_name"));
+    await expect(push).lastCalledWith("users/test_id_1");
   },
 };
