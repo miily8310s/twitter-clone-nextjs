@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { PostItem } from "./PostItem";
+import { userEvent, within } from "@storybook/testing-library";
+import { expect, jest } from "@storybook/jest";
 
 const meta: Meta<typeof PostItem> = {
   title: "Example/Posts/PostItem",
@@ -21,6 +23,16 @@ export default meta;
 type Story = StoryObj<typeof PostItem>;
 
 export const Default: Story = {
+  parameters: {
+    nextjs: {
+      router: {
+        path: "/some-default-path",
+        asPath: "/some-default-path",
+        query: {},
+        push: jest.fn(),
+      },
+    },
+  },
   args: {
     isLiked: false,
     post: {
@@ -41,9 +53,32 @@ export const Default: Story = {
       },
     },
   },
+  play: async ({
+    canvasElement,
+    parameters: {
+      nextjs: {
+        router: { push },
+      },
+    },
+  }) => {
+    const canvas = within(canvasElement);
+    await expect(canvas.getByLabelText("like_icon_white")).toBeInTheDocument();
+    await userEvent.click(canvas.getByLabelText("Body"));
+    await expect(push).lastCalledWith("/posts/111");
+  },
 };
 
 export const Liked: Story = {
+  parameters: {
+    nextjs: {
+      router: {
+        path: "/some-default-path",
+        asPath: "/some-default-path",
+        query: {},
+        push: jest.fn(),
+      },
+    },
+  },
   args: {
     isLiked: true,
     post: {
@@ -63,5 +98,18 @@ export const Liked: Story = {
         created_at: "",
       },
     },
+  },
+  play: async ({
+    canvasElement,
+    parameters: {
+      nextjs: {
+        router: { push },
+      },
+    },
+  }) => {
+    const canvas = within(canvasElement);
+    await expect(canvas.getByLabelText("like_icon_red")).toBeInTheDocument();
+    await userEvent.click(canvas.getByLabelText("UserLink"));
+    await expect(push).lastCalledWith("users/test_id_1");
   },
 };

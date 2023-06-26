@@ -101,7 +101,11 @@ export const PostItem: FC<PostProps> = ({
                   }
                 }}
               >
-                <LikeIcon color={isLiked ? "red" : ""} size={20} />
+                <LikeIcon
+                  aria-label={`like_icon_${isLiked ? "red" : "white"}`}
+                  color={isLiked ? "red" : ""}
+                  size={20}
+                />
               </div>
             )}
           </div>
