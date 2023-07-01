@@ -2,6 +2,10 @@ import { FC, ReactElement } from "react";
 import { Modal } from "../Modal";
 import { Input } from "../Input";
 import { LoginModalInputs, useLoginModal } from "../../hooks/useLoginModal";
+import { Auth } from "@supabase/auth-ui-react";
+import { ThemeSupa } from "@supabase/auth-ui-shared";
+
+import { supabaseClient } from "@/libs/supabaseClient";
 
 export const LoginModal: FC = () => {
   const { register, errors, onSubmit, onClose, onSwitch, isLoginOpen } =
@@ -9,6 +13,12 @@ export const LoginModal: FC = () => {
 
   const bodyContent = (
     <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+      <Auth
+        supabaseClient={supabaseClient}
+        providers={["google"]}
+        onlyThirdPartyProviders={true}
+        appearance={{ theme: ThemeSupa }}
+      />
       <Input<LoginModalInputs>
         register={register}
         type="email"
@@ -37,7 +47,7 @@ export const LoginModal: FC = () => {
       <p>
         First time using Twitter?
         <span
-          style={{ color: "#ffffff", cursor: "pointer" }}
+          style={{ color: "#ffffff", cursor: "pointer", marginLeft: "0.25rem" }}
           onClick={onSwitch}
         >
           Create an account
